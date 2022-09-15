@@ -26,7 +26,7 @@ res = requests.post(url="https://cat-match.easygame2021.com/sheep/v1/user/login_
 # token="你的Token"
 
 token = str(res['data']['token'])
-res = requests.get(url=f"https://cat-match.easygame2021.com/sheep/v1/game/game_over?rank_score=1&rank_state=1&rank_time={rank_time}&rank_role={rank_state}&skin=34&t={token}", headers={
+res = requests.get(url=f"https://cat-match.easygame2021.com/sheep/v1/game/{'game_over' if rank_state == 2 else 'topic_game_over'}?rank_score=1&rank_state=1&rank_time={rank_time}&rank_role={rank_state}&skin=34&t={token}", headers={
     "Content-Type": "application/json",
     "Host": "cat-match.easygame2021.com",
     "Referer": "https://servicewechat.com/wx141bfb9b73c970a9/14/page-frame.html",
