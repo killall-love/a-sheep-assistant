@@ -1,6 +1,6 @@
 import requests
 
-# 小程序OpenId
+# 小程序OpenId 
 openId="xxxxxxxxxxxxxxxxxxxxxxx"
 
 # 通过OpenId 生成Token
