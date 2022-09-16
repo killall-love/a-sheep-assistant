@@ -2,6 +2,7 @@ import requests
 
 # 初始化 requests 
 session = requests.session()
+session.keep_alive = False
 session.headers = {
     "Content-Type": "application/json",
     "Host": "cat-match.easygame2021.com",
