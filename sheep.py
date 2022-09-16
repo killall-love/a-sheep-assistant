@@ -4,6 +4,8 @@ import requests
 session = requests.session()
 session.keep_alive = False
 session.headers = {
+    "Accept-Encoding": "gzip,compress,br,deflate",
+    "Connection": "close",
     "Host": "cat-match.easygame2021.com",
     "User-Agent": "Mozilla/5.0 (iPhone; CPU iPhone OS 15_4_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148 MicroMessenger/8.0.27(0x18001b36) NetType/WIFI Language/zh_HK",
 }
