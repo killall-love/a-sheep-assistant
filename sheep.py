@@ -45,6 +45,6 @@ token = str(res['data']['token'])
 res = session.get(
     url=f"https://cat-match.easygame2021.com/sheep/v1/game/{'game_over' if rank_state == 2 else 'topic_game_over'}?rank_score=1&rank_state=1&rank_time={rank_time}&rank_role={rank_state}&skin=1&t={token}", verify=False).json()
 if str(res['err_code']) == "0":
-    print("操作成功\r\n头像和名称已发生变化\r\n移除小程序重新登录即可正常")
+    print("操作成功")
 else:
     print("操作失败")
