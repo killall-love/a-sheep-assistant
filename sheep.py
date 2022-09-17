@@ -18,12 +18,17 @@ rank_time = 5*60
 # 小程序OpenId
 openId = "xxxxxxxxxxxxxxxxxxxxxxxxx"
 
-# 通过OpenId 生成Token
-res = session.post(url="https://cat-match.easygame2021.com/sheep/v1/user/login_oppo", json={
-    "uid": openId,
-    "nick_name": "baidu",
-    "avatar": "https://www.baidu.com/favicon.ico",
-    "sex": 1
+# 通过OpenId 生成Token  OPPO 手机
+# res = session.post(url="https://cat-match.easygame2021.com/sheep/v1/user/login_oppo", json={
+#     "uid": openId,
+#     "nick_name": "baidu",
+#     "avatar": "https://www.baidu.com/favicon.ico",
+#     "sex": 1
+# }).json()
+
+# 通过OpenId 生成Token  IOS 设备
+res = session.post(url="https://cat-match.easygame2021.com/sheep/v1/user/login_tourist", json={
+    "uuid": openId,
 }).json()
 
 # 直接使用Token刷 使用Token请注释上面的 生成Token
