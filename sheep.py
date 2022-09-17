@@ -18,33 +18,60 @@ session.headers = {
 rank_state = 2
 # 过关时间默认是 5 分钟 所以（5 * 60） 可修改为 1
 rank_time = 5*60
+# 请输入你刷取的次数
+nums = 1
+
+# 请输入你的游戏UID
+uid = "你的UID"
+
+# ***********************UID**START****************************
+
+res = session.get(
+    url=f"https://cat-match.easygame2021.com/sheep/v1/game/user_info?uid={uid}&t=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2OTQ0NzgwMTAsIm5iZiI6MTY2MzM3NTgxMCwiaWF0IjoxNjYzMzc0MDEwLCJqdGkiOiJDTTpjYXRfbWF0Y2g6bHQxMjM0NTYiLCJvcGVuX2lkIjoiIiwidWlkIjo0ODUwNDY1MCwiZGVidWciOiIiLCJsYW5nIjoiIn0.IEjNoHJiJPqlh86DqDS3-SMTwErTCatQF6ykZk4o-Yc", verify=False).json()
+openId = res['data']['wx_open_id']
+
+# ***********************UID**END****************************
 
 # 小程序OpenId
-openId = "xxxxxxxxxxxxxxxxxxxxxxx"
+# 如果想使用 openId 刷取 请注释  UID**START -> UID**END 并取消注释  （ # openId = "xxxxxxxxxxxxxxxxxxxxxxx" ）
+# openId = "xxxxxxxxxxxxxxxxxxxxxxx"
 
+# 两种方式获取 openId -> token
+
+# 方式一
 # 通过OpenId 生成Token  OPPO 手机
+
+# ***********************生成Token**START****************************
 # res = session.post(url="https://cat-match.easygame2021.com/sheep/v1/user/login_oppo", json={
 #     "uid": openId,
 #     "nick_name": "baidu",
 #     "avatar": "https://www.baidu.com/favicon.ico",
 #     "sex": 1
 # }).json()
+# token = str(res['data']['token'])
+# ***********************生成Token**END****************************
 
+# 方式二
 # 通过OpenId 生成Token  IOS 设备
+
+# ***********************生成Token**START****************************
+
 res = session.post(url="https://cat-match.easygame2021.com/sheep/v1/user/login_tourist", verify=False, json={
     "uuid": openId,
 }).json()
+token = str(res['data']['token'])
 
-print(res)
+# ***********************生成Token**END****************************
 
 # 直接使用Token刷 使用Token请注释上面的 生成Token
 # 并注释掉 token = str(res['data']['token'])
+# 如果想使用 Token刷取 请注释  生成Token**START -> 生成Token**END 并取消注释  （ # token="你的Token" ）
 # token="你的Token"
 
-token = str(res['data']['token'])
-res = session.get(
-    url=f"https://cat-match.easygame2021.com/sheep/v1/game/{'game_over' if rank_state == 2 else 'topic_game_over'}?rank_score=1&rank_state=1&rank_time={rank_time}&rank_role={rank_state}&skin=1&t={token}", verify=False).json()
-if str(res['err_code']) == "0":
-    print("操作成功")
-else:
-    print("操作失败")
+for i in range(nums):
+    res = session.get(
+        url=f"https://cat-match.easygame2021.com/sheep/v1/game/{'game_over' if rank_state == 2 else 'topic_game_over'}?rank_score=1&rank_state=1&rank_time={rank_time}&rank_role={rank_state}&skin=1&t={token}", verify=False).json()
+    if str(res['err_code']) == "0":
+        print(f"操作成功\r\n次数：{i}")
+    else:
+        print(f"操作失败\r\n次数：{i}")
