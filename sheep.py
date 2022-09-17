@@ -1,11 +1,15 @@
 import requests
 
-# 初始化 requests 
+# 初始化 requests
 session = requests.session()
-session.keep_alive = False
 session.headers = {
-    "Accept-Encoding": "gzip,compress,br,deflate",
-    "Connection": "close",
+    "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8",
+    "Accept-Language": "zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2",
+    "Accept-Encoding": "gzip, deflate",
+    "Connection": "keep-alive",
+    "Upgrade-Insecure-Requests": "1",
+    "Pragma": "no-cache",
+    "Cache-Control": "no-cache",
     "Host": "cat-match.easygame2021.com",
     "User-Agent": "Mozilla/5.0 (iPhone; CPU iPhone OS 15_4_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148 MicroMessenger/8.0.27(0x18001b36) NetType/WIFI Language/zh_HK",
 }
@@ -16,7 +20,7 @@ rank_state = 2
 rank_time = 5*60
 
 # 小程序OpenId
-openId = "xxxxxxxxxxxxxxxxxxxxxxxxx"
+openId = "xxxxxxxxxxxxxxxxxxxxxxx"
 
 # 通过OpenId 生成Token  OPPO 手机
 # res = session.post(url="https://cat-match.easygame2021.com/sheep/v1/user/login_oppo", json={
@@ -27,16 +31,19 @@ openId = "xxxxxxxxxxxxxxxxxxxxxxxxx"
 # }).json()
 
 # 通过OpenId 生成Token  IOS 设备
-res = session.post(url="https://cat-match.easygame2021.com/sheep/v1/user/login_tourist", json={
+res = session.post(url="https://cat-match.easygame2021.com/sheep/v1/user/login_tourist", verify=False, json={
     "uuid": openId,
 }).json()
+
+print(res)
 
 # 直接使用Token刷 使用Token请注释上面的 生成Token
 # 并注释掉 token = str(res['data']['token'])
 # token="你的Token"
 
 token = str(res['data']['token'])
-res = session.get(url=f"https://cat-match.easygame2021.com/sheep/v1/game/{'game_over' if rank_state == 2 else 'topic_game_over'}?rank_score=1&rank_state=1&rank_time={rank_time}&rank_role={rank_state}&skin=1&t={token}").json()
+res = session.get(
+    url=f"https://cat-match.easygame2021.com/sheep/v1/game/{'game_over' if rank_state == 2 else 'topic_game_over'}?rank_score=1&rank_state=1&rank_time={rank_time}&rank_role={rank_state}&skin=1&t={token}", verify=False).json()
 if str(res['err_code']) == "0":
     print("操作成功\r\n头像和名称已发生变化\r\n移除小程序重新登录即可正常")
 else:
