@@ -6,3 +6,6 @@
 ### 支持小程序 openid刷取
 #### openId是生成Token实现刷取
 
+### 支持小程序 uid刷取
+*****2022年09月17日*****
+#### uid生成openId -> openId通过（oppo/ios 设备接口）生成Token实现刷取 （uid理论抖音和微信通刷）
