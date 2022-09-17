@@ -22,7 +22,7 @@ rank_time = 5*60
 nums = 1
 
 # 请输入你的游戏UID
-uid = "你的UID"
+uid = "72296441"
 
 # ***********************UID**START****************************
 
@@ -60,7 +60,6 @@ res = session.post(url="https://cat-match.easygame2021.com/sheep/v1/user/login_t
     "uuid": openId,
 }).json()
 token = str(res['data']['token'])
-
 # ***********************生成Token**END****************************
 
 # 直接使用Token刷 使用Token请注释上面的 生成Token
@@ -72,6 +71,6 @@ for i in range(nums):
     res = session.get(
         url=f"https://cat-match.easygame2021.com/sheep/v1/game/{'game_over' if rank_state == 2 else 'topic_game_over'}?rank_score=1&rank_state=1&rank_time={rank_time}&rank_role={rank_state}&skin=1&t={token}", verify=False).json()
     if str(res['err_code']) == "0":
-        print(f"操作成功\r\n次数：{i}")
+        print(f"{ '羊群数量' if rank_state == 2 else '话题数量' }操作成功\r\n操作次数：{i + 1}")
     else:
-        print(f"操作失败\r\n次数：{i}")
+        print(f"{ '羊群数量' if rank_state == 2 else '话题数量' }操作失败\r\n操作次数：{i + 1}")
