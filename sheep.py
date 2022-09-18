@@ -52,7 +52,7 @@ res = session.post(url="https://cat-match.easygame2021.com/sheep/v1/user/login_o
 token = str(res['data']['token'])
 # ***********************生成Token**END****************************
 
-# 方式二
+# 方式二 （2022-09-18 已废弃）
 # 通过OpenId 生成Token  IOS 设备
 
 # ***********************生成Token**START****************************
