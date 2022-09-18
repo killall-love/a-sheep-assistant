@@ -1,3 +1,4 @@
+from tkinter import E
 import requests
 
 # 初始化 requests
@@ -68,9 +69,12 @@ token = str(res['data']['token'])
 # token="你的Token"
 
 for i in range(nums):
-    res = session.get(
-        url=f"https://cat-match.easygame2021.com/sheep/v1/game/{'game_over' if rank_state == 2 else 'topic_game_over'}?rank_score=1&rank_state=1&rank_time={rank_time}&rank_role={rank_state}&skin=1&t={token}", verify=False).json()
-    if str(res['err_code']) == "0":
-        print(f"{ '羊群数量' if rank_state == 2 else '话题数量' }操作成功\r\n操作次数：{i + 1}")
-    else:
+    try:
+        res = session.get(
+            url=f"https://cat-match.easygame2021.com/sheep/v1/game/{'game_over' if rank_state == 2 else 'topic_game_over'}?rank_score=1&rank_state=1&rank_time={rank_time}&rank_role={rank_state}&skin=1&t={token}", verify=False).json()
+        if str(res['err_code']) == "0":
+            print(f"{ '羊群数量' if rank_state == 2 else '话题数量' }操作成功\r\n操作次数：{i + 1}")
+        else:
+            print(f"{ '羊群数量' if rank_state == 2 else '话题数量' }操作失败\r\n操作次数：{i + 1}")
+    except Exception as e:
         print(f"{ '羊群数量' if rank_state == 2 else '话题数量' }操作失败\r\n操作次数：{i + 1}")
