@@ -29,7 +29,8 @@ uid = ""
 res = session.get(
     url=f"https://cat-match.easygame2021.com/sheep/v1/game/user_info?uid={uid}&t=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2OTQ0NzgwMTAsIm5iZiI6MTY2MzM3NTgxMCwiaWF0IjoxNjYzMzc0MDEwLCJqdGkiOiJDTTpjYXRfbWF0Y2g6bHQxMjM0NTYiLCJvcGVuX2lkIjoiIiwidWlkIjo0ODUwNDY1MCwiZGVidWciOiIiLCJsYW5nIjoiIn0.IEjNoHJiJPqlh86DqDS3-SMTwErTCatQF6ykZk4o-Yc", verify=False).json()
 openId = res['data']['wx_open_id']
-
+nick_name = res['data']['nick_name']
+avatar = res['data']['avatar']
 # ***********************UID**END****************************
 
 # 小程序OpenId
@@ -42,24 +43,24 @@ openId = res['data']['wx_open_id']
 # 通过OpenId 生成Token  OPPO 手机
 
 # ***********************生成Token**START****************************
-# res = session.post(url="https://cat-match.easygame2021.com/sheep/v1/user/login_oppo", json={
-#     "uid": openId,
-#     "nick_name": "baidu",
-#     "avatar": "https://www.baidu.com/favicon.ico",
-#     "sex": 1
-# }).json()
-# token = str(res['data']['token'])
+res = session.post(url="https://cat-match.easygame2021.com/sheep/v1/user/login_oppo", json={
+    "uid": openId,
+    "nick_name": nick_name,
+    "avatar": avatar,
+    "sex": 1
+}).json()
+token = str(res['data']['token'])
 # ***********************生成Token**END****************************
 
 # 方式二
 # 通过OpenId 生成Token  IOS 设备
 
 # ***********************生成Token**START****************************
-
-res = session.post(url="https://cat-match.easygame2021.com/sheep/v1/user/login_tourist", verify=False, json={
-    "uuid": openId,
-}).json()
-token = str(res['data']['token'])
+# 
+# res = session.post(url="https://cat-match.easygame2021.com/sheep/v1/user/login_tourist", verify=False, json={
+#     "uuid": openId,
+# }).json()
+# token = str(res['data']['token'])
 # ***********************生成Token**END****************************
 
 # 直接使用Token刷 使用Token请注释上面的 生成Token
