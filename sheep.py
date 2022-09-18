@@ -3,6 +3,7 @@ import requests
 # 初始化 requests
 session = requests.session()
 session.headers = {
+    "content-type": "application/json;charset=utf-8",
     "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8",
     "Accept-Language": "zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2",
     "Accept-Encoding": "gzip, deflate",
@@ -30,6 +31,8 @@ res = session.get(
     url=f"https://cat-match.easygame2021.com/sheep/v1/game/user_info?uid={uid}&t=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2OTQ0NzgwMTAsIm5iZiI6MTY2MzM3NTgxMCwiaWF0IjoxNjYzMzc0MDEwLCJqdGkiOiJDTTpjYXRfbWF0Y2g6bHQxMjM0NTYiLCJvcGVuX2lkIjoiIiwidWlkIjo0ODUwNDY1MCwiZGVidWciOiIiLCJsYW5nIjoiIn0.IEjNoHJiJPqlh86DqDS3-SMTwErTCatQF6ykZk4o-Yc", verify=False).json()
 openId = res['data']['wx_open_id']
 nick_name = res['data']['nick_name']
+if nick_name == "":
+    nick_name = "默认用户"
 avatar = res['data']['avatar']
 # ***********************UID**END****************************
 
