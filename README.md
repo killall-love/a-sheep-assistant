@@ -8,14 +8,16 @@
 
 ### 支持小程序 uid刷取
 *****2022年09月17日*****
-#### uid生成openId -> openId通过（oppo/ios 设备接口）生成Token实现刷取 （uid理论抖音和微信通刷）
+#### uid生成openId -> openId通过（oppo/~~ios~~ 设备接口）生成Token实现刷取 （uid理论抖音和微信通刷）
+*****2022年09月18日*****
+#### ~~IOS 接口废弃~~
 
 # 原理分享
 ## 首先UID是内部维护的一个id
 ## openid是第三方平台登录的标识
 
 ### uid获取token实际上是通过user_info接口获取用户信息，里面包含了openid
-### 在通过OPPO/iOS的设备登录方式 通过openid登录获取Token
+### 在通过OPPO/~~iOS~~的设备登录方式 通过openid登录获取Token
 ### 获取token就直接刷了
 
 ## 刷接口需要token 登录不需要token uid获取openid的token哪里来?
