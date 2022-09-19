@@ -29,24 +29,26 @@ uid = ""
 nick_name = "默认用户"
 # 修改头像地址 (可选)
 avatar = "https://baidu.com/"
- # 刷取完成后 昵称会默认显示 '默认用户' 图片会丢失 移除小程序 重新进入 即可恢复
+# 刷取完成后 昵称会默认显示 '默认用户' 图片会丢失 移除小程序 重新进入 即可恢复
 
+    
 # ***********************UID**START****************************
 
 res = session.get(
     url=f"https://cat-match.easygame2021.com/sheep/v1/game/user_info?uid={uid}&t=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2OTQ0NzgwMTAsIm5iZiI6MTY2MzM3NTgxMCwiaWF0IjoxNjYzMzc0MDEwLCJqdGkiOiJDTTpjYXRfbWF0Y2g6bHQxMjM0NTYiLCJvcGVuX2lkIjoiIiwidWlkIjo0ODUwNDY1MCwiZGVidWciOiIiLCJsYW5nIjoiIn0.IEjNoHJiJPqlh86DqDS3-SMTwErTCatQF6ykZk4o-Yc", verify=False).json()
 openId = res['data']['wx_open_id']
+
 # ***********************UID**END****************************
 
 # 小程序OpenId
 # 如果想使用 openId 刷取 请注释  UID**START -> UID**END 并取消注释  （ # openId = "xxxxxxxxxxxxxxxxxxxxxxx" ）
 # openId = "xxxxxxxxxxxxxxxxxxxxxxx"
 
+
 # 两种方式获取 openId -> token
 
 # 方式一
 # 通过OpenId 生成Token  OPPO 手机
-
 # ***********************生成Token**START****************************
 res = session.post(url="https://cat-match.easygame2021.com/sheep/v1/user/login_oppo", json={
     "uid": openId,
@@ -56,6 +58,7 @@ res = session.post(url="https://cat-match.easygame2021.com/sheep/v1/user/login_o
 }).json()
 token = str(res['data']['token'])
 # ***********************生成Token**END****************************
+
 
 # 方式二 （2022-09-18 已废弃）
 # 通过OpenId 生成Token  IOS 设备
