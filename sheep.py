@@ -1,3 +1,4 @@
+import urllib3
 import requests
 
 # 初始化 requests
@@ -14,6 +15,8 @@ session.headers = {
     "Host": "cat-match.easygame2021.com",
     "User-Agent": "Mozilla/5.0 (iPhone; CPU iPhone OS 15_4_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148 MicroMessenger/8.0.27(0x18001b36) NetType/WIFI Language/zh_HK",
 }
+# 移除Https警告
+urllib3.disable_warnings()
 
 # 刷取类型 1 是话题 2 是羊群 默认羊群
 rank_state = 2
