@@ -27,14 +27,15 @@ uid = ""
 
 # 填入你的昵称（可选）
 nick_name = "默认用户"
-
+# 修改头像地址 (可选)
+avatar = "https://baidu.com/"
+ # 刷取完成后 昵称会默认显示 '默认用户' 图片会丢失 移除小程序 重新进入 即可恢复
 
 # ***********************UID**START****************************
 
 res = session.get(
     url=f"https://cat-match.easygame2021.com/sheep/v1/game/user_info?uid={uid}&t=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2OTQ0NzgwMTAsIm5iZiI6MTY2MzM3NTgxMCwiaWF0IjoxNjYzMzc0MDEwLCJqdGkiOiJDTTpjYXRfbWF0Y2g6bHQxMjM0NTYiLCJvcGVuX2lkIjoiIiwidWlkIjo0ODUwNDY1MCwiZGVidWciOiIiLCJsYW5nIjoiIn0.IEjNoHJiJPqlh86DqDS3-SMTwErTCatQF6ykZk4o-Yc", verify=False).json()
 openId = res['data']['wx_open_id']
-avatar = res['data']['avatar']
 # ***********************UID**END****************************
 
 # 小程序OpenId
@@ -83,7 +84,7 @@ for i in range(nums):
     except Exception as e:
         print(f"{ '羊群数量' if rank_state == 2 else '话题数量' }操作失败\r\n操作次数：{i + 1}")
 
- # 刷取完成后 如果昵称显示 '默认用户' 移除小程序 重新进入 即可恢复
+ # 刷取完成后 昵称会默认显示 '默认用户' 图片会丢失 移除小程序 重新进入 即可恢复
   
 
 
