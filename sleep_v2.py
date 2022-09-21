@@ -84,7 +84,7 @@ def first():
         "rank_time": rank_time + random.randint(20, 80),
         "rank_role": 1,
         "skin": 1,
-        "MatchPlayInfo": str(getMatchPlayInfo(token))
+        "MatchPlayInfo": str(getMatchPlayInfo(token), 'utf8'))
     }, verify=False).json()
     return str(res['err_code']) == "0"
 
