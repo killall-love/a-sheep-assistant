@@ -106,7 +106,7 @@ def game_over_data():
     res = session.get(url).json()
     if str(res['err_code']) == "0" and res['data']['today_state'] == 1:
         print(
-            f"\r\n\r\n操作成功\r\n羊群：{d_c_old} -----  {res['data']['daily_count']}\r\n话题：{t_c_old} -----  {res['data']['topic_count']}")
+            f"\r\n\r\n操作成功\r\n羊群：{d_c_old} -----  {res['data']['win_count']}\r\n话题：{t_c_old} -----  {res['data']['topic_count']}")
     else:
         print(f"数据操作失败")
 
@@ -115,7 +115,7 @@ if __name__ == '__main__':
     # 获取基础参数
     url = f'https://cat-match.easygame2021.com/sheep/v1/game/personal_info?t={token}'
     res = session.get(url).json()
-    d_c_old = res['data']['daily_count']
+    d_c_old = res['data']['win_count']
     t_c_old = res['data']['topic_count']
     if str(res['err_code']) == "0" and res['data']['today_state'] == 1:
         print(f"当前用户\r\n羊群：{d_c_old}\r\n话题：{t_c_old}\r\n\r\n")
